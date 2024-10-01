@@ -15,12 +15,21 @@ const Button = () => {
       Add to Cart
     </button>
   );
-  const increaseItem = (
-    <button className="bg-red-500 border border-solid flex justify-between items-center border-orange-950 rounded-3xl text-center w-32 px-2 py-2 text-sm">
-      <div onClick={() => setCount(count - 1)}>
+
+  const decreaseItem = () => {
+    if (count >= 1) {
+      setCount(count -1);
+    } else {
+      return count;
+    }
+  };
+
+  const numberOfItems = (
+    <button className="bg-orange-700 border border-solid flex justify-between items-center border-orange-950 rounded-3xl text-center w-32 px-2 py-2 text-sm">
+      <div onClick={decreaseItem}>
         <GrSubtractCircle className="text-lg text-white hover:bg-white hover:text-red-500 rounded-full  cursor-pointer transition-all duration-200" />
       </div>
-      <p>{count}</p>
+      <p className="text-white font-semibold">{count}</p>
       <div onClick={() => setCount(count + 1)}>
         <IoMdAddCircleOutline className="text-lg text-white hover:bg-white hover:text-red-500 rounded-full  cursor-pointer transition-all duration-200" />
       </div>
@@ -29,7 +38,7 @@ const Button = () => {
 
   return (
     <div className="absolute -bottom-5  left-12">
-      <div>{toggle ? addTocart : increaseItem}</div>
+      <div>{toggle ? addTocart : numberOfItems}</div>
     </div>
   );
 };
