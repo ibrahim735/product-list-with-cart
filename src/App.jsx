@@ -79,7 +79,7 @@ const App = () => {
             />
           ))}
         </div>
-        <Cart />
+        <Cart users={desserts} />
       </div>
     </>
   );
