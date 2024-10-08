@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 
 const Card = ({
@@ -6,38 +6,72 @@ const Card = ({
   description,
   price,
   image,
-  count,
-  setCount,
   setCartItems,
+  cartItems,
   id,
 }) => {
-  function handleCart() {
-    setCartItems((prev) => [
-      ...prev,
-      { name: name, amount: count, price: price, id: id },
-    ]);
-  }
-  const [toggle, setToggle] = useState(true);
+  const itemInCart = cartItems.find((item) => item.id === id);
+  const [count, setCount] = useState(1); // Manage local count for each card
 
-  function toggleCart() {
-    setToggle((prev) => !prev);
+  useEffect(() => {
+    if (itemInCart) {
+      setCount(itemInCart.amount); // Set local count to the amount in the cart when item is in cart
+    }
+  }, [itemInCart]);
+
+  function handleCart() {
+    if (!itemInCart) {
+      setCartItems((prev) => [
+        ...prev,
+        { name, amount: count, price: price, id: id },
+      ]);
+    } else {
+      // If already in cart, just update the amount
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === id ? { ...item, amount: count } : item
+        )
+      );
+    }
   }
+
+  const handleCountChange = (newCount) => {
+    setCount(newCount);
+    if (itemInCart) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === id ? { ...item, amount: newCount } : item
+        )
+      );
+    }
+  };
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      handleCountChange(count - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    handleCountChange(count + 1);
+  };
+
   return (
-    <div className="font-redhat">
+    <div className={`font-redhat ${itemInCart ? "" : "border-none"}`}>
       <div className="w-60 relative">
         <img
           className={`w-full rounded-lg ${
-            !toggle ? "border-solid border-2 border-orange-700" : ""
+            itemInCart ? "border-solid border-2 border-orange-700" : ""
           }`}
           src={image}
           alt="waffles-image"
         />
         <Button
           count={count}
-          setCount={setCount}
+          handleIncrement={handleIncrement}
+          handleDecrement={handleDecrement}
           handleCart={handleCart}
-          toggleCart={toggleCart}
-          toggle={toggle}
+          itemInCart={!!itemInCart} // Pass whether the item is in the cart
         />
       </div>
       <div className="mt-8">

@@ -4,12 +4,7 @@ import Cart from "./Cart";
 import { itemsData } from "./itemsData";
 
 const App = () => {
-  const [count, setCount] = useState(1);
   const [cartItems, setCartItems] = useState([]);
-
-  const toggleCart = () => {
-    setToggle((prev) => !prev);
-  };
 
   return (
     <>
@@ -24,14 +19,12 @@ const App = () => {
               name={item.name}
               description={item.description}
               price={item.price}
-              count={count}
-              setCount={setCount}
-              cartItems={cartItems}
               setCartItems={setCartItems}
+              cartItems={cartItems}
             />
           ))}
         </div>
-        <Cart cartItems={cartItems} count={count} setCartItems={setCartItems} />
+        <Cart cartItems={cartItems} setCartItems={setCartItems} />
       </div>
     </>
   );

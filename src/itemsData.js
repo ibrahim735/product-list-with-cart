@@ -1,16 +1,17 @@
-import CremeBrulee from "./assets/images/image-creme-brulee-desktop.jpg";
-import Macaron from "./assets/images/image-macaron-desktop.jpg";
-import Tiramisu from "./assets/images/image-tiramisu-desktop.jpg";
-import Baklava from "./assets/images/image-baklava-desktop.jpg";
-import Pie from "./assets/images/image-meringue-desktop.jpg";
-import Cake from "./assets/images/image-cake-desktop.jpg";
-import Brownie from "./assets/images/image-brownie-desktop.jpg";
-import PannaCotta from "./assets/images/image-panna-cotta-desktop.jpg";
+import Waffles from "./assets/images/waffle.jpg";
+import CremeBrulee from "./assets/images/creme-brulee.jpg";
+import Macaron from "./assets/images/macaron.jpg";
+import Tiramisu from "./assets/images/tiramisu.jpg";
+import Baklava from "./assets/images/baklava.jpg";
+import Pie from "./assets/images/meringue.jpg";
+import Cake from "./assets/images/cake.jpg";
+import Brownie from "./assets/images/brownie.jpg";
+import PannaCotta from "./assets/images/panna-cotta.jpg";
 
 export const itemsData = [
   {
     id: 1,
-    image: '/waffle.jpg',
+    image: Waffles,
     name: "Waffle",
     description: "Waffles with Berries",
     price: 6.50,

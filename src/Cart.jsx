@@ -1,9 +1,12 @@
-import EmptyCartIllustration from "./assets/images/illustration-empty-cart.jpg";
+import EmptyCartIllustration from "./assets/images/empty-cart.jpg";
 import { ImCancelCircle } from "react-icons/im";
-import carbonNeutral from "./assets/images/icon-carbon-neutral.jpg"
-const Cart = ({ cartItems, setCartItems }) => {
+import carbonNeutral from "./assets/images/carbon-neutral-icon.jpg";
+
+const Cart = ({ cartItems, setCartItems, setButtonState }) => {
   function removeItemById(id) {
     setCartItems(cartItems.filter((item) => item.id !== id));
+    // Notify the Card component to reset its button state
+    setButtonState(id, true); // true indicates to revert to "Add to Cart"
   }
 
   const totalPrice = cartItems.reduce((total, item) => {
@@ -17,7 +20,6 @@ const Cart = ({ cartItems, setCartItems }) => {
       </h1>
       {cartItems.length < 1 ? (
         <div>
-          {" "}
           <img
             className="w-32 my-10 mx-auto"
             src={EmptyCartIllustration}
@@ -63,10 +65,14 @@ const Cart = ({ cartItems, setCartItems }) => {
           </div>
           <div className="text-orange-900 flex justify-center items-center gap-2 px-6 py-4 bg-orange-50 rounded-2xl ">
             <img className="w-6" src={carbonNeutral} />
-            <p className="text-sm font-medium">This is a <span className="font-semibold">carbon-neutral</span> delivery</p>
+            <p className="text-sm font-medium">
+              This is a <span className="font-semibold">carbon-neutral</span>{" "}
+              delivery
+            </p>
           </div>
-          <button className="bg-orange-700 border border-transparent flex justify-center items-center border-orange-950 rounded-full text-base text-center text-white font-semibold w-full  px-2 py-4  ">Confirm Order</button>
-        
+          <button className="bg-orange-700 border border-transparent flex justify-center items-center border-orange-950 rounded-full text-base text-center text-white font-semibold w-full  px-2 py-4  ">
+            Confirm Order
+          </button>
         </div>
       )}
     </div>
