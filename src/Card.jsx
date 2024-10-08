@@ -10,7 +10,7 @@ const Card = ({
   cartItems,
   id,
 }) => {
-  const itemInCart = cartItems.find((item) => item.id === id);
+  const itemInCart = cartItems.find((item) => item.id === id); // Check if item is in cart
   const [count, setCount] = useState(1); // Manage local count for each card
 
   useEffect(() => {
