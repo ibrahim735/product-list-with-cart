@@ -17,9 +17,16 @@ const Cart = ({ cartItems, setCartItems, setButtonState }) => {
 
   const [ConfirmOrderPopUp, setConfirmOrderPopUp] = useState(false);
 
+  // New function to reset cart and button states
+  const resetOrder = () => {
+    setCartItems([]); // Reset cart items to empty array
+    // Call a function to reset button states here if needed
+    // setButtonStateToDefault(); // Example function to reset button states
+  };
+
   return (
     <>
-      <div className="w-96 h-max rounded-lg bg-white p-4">
+      <div className="w-96 h-full overflow-auto rounded-lg bg-white p-4">
         <h1 className="text-2xl font-bold text-orange-700">
           Your Cart ({cartItems.length})
         </h1>
@@ -85,7 +92,17 @@ const Cart = ({ cartItems, setCartItems, setButtonState }) => {
         )}
       </div>
       {ConfirmOrderPopUp && (
-        <ConfirmOrder setConfirmOrderPopUp={setConfirmOrderPopUp} />
+        <ConfirmOrder
+          // setConfirmOrderPopUp={setConfirmOrderPopUp}
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          setConfirmOrderPopUp={(isOpen) => {
+            if (!isOpen) {
+              resetOrder(); // Reset order when closing the popup
+            }
+            setConfirmOrderPopUp(isOpen);
+          }}
+        />
       )}
     </>
   );

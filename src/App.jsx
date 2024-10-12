@@ -24,12 +24,8 @@ const App = () => {
             />
           ))}
         </div>
-        <Cart
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-        />
+        <Cart cartItems={cartItems} setCartItems={setCartItems} />
       </div>
-      
     </div>
   );
 };
