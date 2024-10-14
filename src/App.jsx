@@ -5,7 +5,6 @@ import { itemsData } from "./itemsData";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
-
   return (
     <div>
       <h1 className="text-4xl font-bold py-10">Desserts</h1>
@@ -24,7 +23,7 @@ const App = () => {
             />
           ))}
         </div>
-        <Cart cartItems={cartItems} setCartItems={setCartItems} />
+              <Cart cartItems={cartItems} setCartItems={setCartItems}   />
       </div>
     </div>
   );

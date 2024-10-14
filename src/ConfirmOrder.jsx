@@ -18,10 +18,10 @@ const ConfirmOrder = ({ setConfirmOrderPopUp, cartItems, totalPrice }) => {
             return (
               <div
                 key={data.id}
-                className="border-b-[0.01px] border-orange-200 flex items-center justify-between p-2"
+                className="border-b-[0.01px] border-orange-200 flex items-center justify-between p-3"
               >
                 <div className="flex items-center gap-4">
-                  {/* <img src={data.image} alt="cart-items-image" /> */}
+                  <img className="w-12 rounded-lg" src={data.image} alt="cart-items-image" />
                   <div>
                     <p className="font-bold text-orange-900 mb-">{data.name}</p>
                     <p className="flex gap-x-2 ">
@@ -45,7 +45,10 @@ const ConfirmOrder = ({ setConfirmOrderPopUp, cartItems, totalPrice }) => {
         </div>
         <button
           className=" bg-orange-700 border border-transparent flex justify-center items-center border-orange-950 rounded-full text-base text-center text-white font-semibold w-full  px-2 py-4"
-          onClick={() => setConfirmOrderPopUp(false)}
+          onClick={() => {
+            setConfirmOrderPopUp(false);
+            window.location.reload();
+          }}
         >
           Start New Order
         </button>

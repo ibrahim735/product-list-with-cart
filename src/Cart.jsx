@@ -4,7 +4,7 @@ import carbonNeutral from "./assets/images/carbon-neutral-icon.jpg";
 import { useState } from "react";
 import ConfirmOrder from "./ConfirmOrder";
 
-const Cart = ({ cartItems, setCartItems, setButtonState }) => {
+const Cart = ({ cartItems, setCartItems, setButtonState, setCount }) => {
   function removeItemById(id) {
     setCartItems(cartItems.filter((item) => item.id !== id));
     // Notify the Card component to reset its button state
@@ -19,11 +19,9 @@ const Cart = ({ cartItems, setCartItems, setButtonState }) => {
 
   // New function to reset cart and button states
   const resetOrder = () => {
-    setCartItems([]); // Reset cart items to empty array
-    // Call a function to reset button states here if needed
-    // setButtonStateToDefault(); // Example function to reset button states
+    setCartItems([]);
+    
   };
-
   return (
     <>
       <div className="w-96 h-full overflow-auto rounded-lg bg-white p-4">
@@ -93,15 +91,9 @@ const Cart = ({ cartItems, setCartItems, setButtonState }) => {
       </div>
       {ConfirmOrderPopUp && (
         <ConfirmOrder
-          // setConfirmOrderPopUp={setConfirmOrderPopUp}
+          setConfirmOrderPopUp={setConfirmOrderPopUp}
           cartItems={cartItems}
           totalPrice={totalPrice}
-          setConfirmOrderPopUp={(isOpen) => {
-            if (!isOpen) {
-              resetOrder(); // Reset order when closing the popup
-            }
-            setConfirmOrderPopUp(isOpen);
-          }}
         />
       )}
     </>
@@ -109,3 +101,5 @@ const Cart = ({ cartItems, setCartItems, setButtonState }) => {
 };
 
 export default Cart;
+
+

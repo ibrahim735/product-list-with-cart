@@ -10,8 +10,9 @@ const Card = ({
   cartItems,
   id,
 }) => {
-  const itemInCart = cartItems.find((item) => item.id === id); // Check if item is in cart
   const [count, setCount] = useState(1); // Manage local count for each card
+
+  const itemInCart = cartItems.find((item) => item.id === id); // Check if item is in cart
 
   useEffect(() => {
     if (itemInCart) {
@@ -23,7 +24,7 @@ const Card = ({
     if (!itemInCart) {
       setCartItems((prev) => [
         ...prev,
-        { name, amount: count, price: price, id: id },
+        { name, amount: count, price: price, id: id, image: image },
       ]);
     } else {
       // If already in cart, just update the amount
